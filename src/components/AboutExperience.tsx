@@ -82,9 +82,9 @@ const backgroundItems = [
     period: 'Desember 2024 s.d. Sekarang',
     periodBadge: 'Layanan Mandiri',
     title: 'Pelayanan & Pengelolaan Jasa Digital',
-    subtitle: 'Komunikasi Klien & Publikasi Naskah',
+    subtitle: 'Komunikasi Klien & Publikasi Artikel',
     description:
-      'Melayani klien dan mahasiswa melalui WhatsApp untuk kebutuhan naskah, publikasi artikel, dan pembuatan website, mulai dari koordinasi pengerjaan, transparansi tarif, hingga revisi tuntas.',
+      'Melayani klien dan mahasiswa melalui WhatsApp untuk kebutuhan artikel, publikasi artikel, dan pembuatan website, mulai dari koordinasi pengerjaan, transparansi tarif, hingga revisi tuntas.',
     tags: ['Komunikasi Konsumen', 'Publikasi Media', 'Manajemen Revisi', 'Pelayanan Cepat'],
     isFeatured: true,
     icon: (
@@ -261,7 +261,7 @@ export const AboutExperience: React.FC<AboutExperienceProps> = () => {
                           Bimbingan &amp; Konseling
                         </h3>
                         <p className="font-body text-xs sm:text-sm text-[#71717A] dark:text-[#A1A1AA] font-normal">
-                          Universitas Negeri Gorontalo · 2022 – Sekarang
+                          Universitas Negeri Gorontalo · 2022
                         </p>
                       </div>
                     </div>
