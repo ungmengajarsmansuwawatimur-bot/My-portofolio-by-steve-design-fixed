@@ -177,12 +177,12 @@ export const workflowEvidenceData: WorkflowEvidenceItem[] = [
       },
       {
         sender: 'taufik',
-        text: 'Walaikumsalam, 50-100k ka tergantung isi teks dalam naskah',
+        text: 'Walaikumsalam, 50-100k ka tergantung isi teks dalam artikel',
         time: '09.01',
       },
       {
         sender: 'client',
-        text: 'isi teks dalam naskah dari kita yang sediakan kak?',
+        text: 'isi teks dalam artikel dari kita yang sediakan kak?',
         time: '09.02',
       },
     ],
@@ -193,11 +193,11 @@ export const workflowEvidenceData: WorkflowEvidenceItem[] = [
     title: 'Memahami Kebutuhan',
     subtitle: 'Alur Chat Nyata',
     shortDescription:
-      'Mendengarkan rincian kebutuhan naskah dan artikel dari pelanggan secara cermat, memastikan keakuratan berkas yang dikirim, serta mengonfirmasi kesiapan penulisan dan publikasi sesuai instruksi.',
+      'Mendengarkan rincian kebutuhan artikel dari pelanggan secara cermat, memastikan keakuratan berkas yang dikirim, serta mengonfirmasi kesiapan penulisan dan publikasi sesuai instruksi.',
     privacyNote:
       'Identitas dan nomor telepon disamarkan demi privasi pelanggan sesuai etika profesional.',
     replacementGuide:
-      'Tangkapan layar WhatsApp asli alur identifikasi kebutuhan naskah dan penyesuaian berkas.',
+      'Tangkapan layar WhatsApp asli alur identifikasi kebutuhan artikel dan penyesuaian berkas.',
     screenshotUrl: '/assets/chat/chat_kebutuhan_01.svg',
     screenshots: [
       '/assets/chat/chat_kebutuhan_01.svg',
@@ -235,7 +235,7 @@ export const workflowEvidenceData: WorkflowEvidenceItem[] = [
     title: 'Koordinasi & Revisi',
     subtitle: 'Alur Chat Nyata',
     shortDescription:
-      'Menerima permintaan penyesuaian/revisi urutan nama dosen pembimbing dari pelanggan, melakukan pembaruan pada naskah artikel, dan menjelaskan estimasi sinkronisasi pembaruan sistem (~5 menit) hingga terbit sempurna.',
+      'Menerima permintaan penyesuaian/revisi urutan nama dosen pembimbing dari pelanggan, melakukan pembaruan pada artikel, dan menjelaskan estimasi sinkronisasi pembaruan sistem (~5 menit) hingga terbit sempurna.',
     privacyNote:
       'Identitas dan nomor telepon disamarkan demi privasi pelanggan sesuai etika profesional.',
     replacementGuide:
@@ -766,7 +766,7 @@ export const testimonialsData: TestimonialItem[] = [
   },
   {
     id: 'testi-2',
-    name: 'Klien Mahasiswa (Kelompok Artikel)',
+    name: 'Klien Mahasiswa',
     role: 'Publikasi Artikel',
     category: 'PUBLIKASI ARTIKEL',
     quote:
@@ -788,7 +788,7 @@ export const testimonialsData: TestimonialItem[] = [
     role: 'Kolaborasi Publikasi Mandiri',
     category: 'KOLABORASI PUBLIKASI MANDIRI',
     quote:
-      'Tanggung jawab dan bisa dipercaya. Dari pemeriksaan naskah, konfirmasi revisi, sampai bukti transfer dan link publikasi, semuanya disampaikan dengan jelas dan transparan. Jadi kami tenang.',
+      'Tanggung jawab dan bisa dipercaya. Dari pemeriksaan artikel, konfirmasi revisi, sampai bukti transfer dan link publikasi, semuanya disampaikan dengan jelas dan transparan. Jadi kami tenang.',
     stars: 5,
   },
 ];
