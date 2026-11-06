@@ -146,7 +146,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
               </a>
             </div>
 
-            {/* Copyright & Privacy Policy + Back to top */}
+            {/* Copyright & Privacy Policy */}
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 text-center sm:text-right w-full sm:w-auto">
               <span className="font-heading text-xs sm:text-sm text-[#4B5563] dark:text-[#9CA3AF] text-center sm:text-right leading-relaxed max-w-sm sm:max-w-none">
                 &copy; 2026 Final Web Design Inc. All rights reserved &middot;{' '}
@@ -161,28 +161,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
                   Privacy Policy
                 </a>
               </span>
-
-              {/* Back to top scroll button */}
-              <button
-                type="button"
-                onClick={scrollToTop}
-                title="Kembali ke atas"
-                aria-label="Scroll to top"
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#171717] dark:bg-white text-white dark:text-[#171717] hover:bg-[#333333] dark:hover:bg-[#E5E5E5] flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-sm shrink-0 cursor-pointer"
-              >
-                <svg
-                  className="w-3.5 h-3.5 sm:w-4 sm:h-4"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <polyline points="18 15 12 9 6 15" />
-                </svg>
-              </button>
             </div>
           </div>
         </div>
