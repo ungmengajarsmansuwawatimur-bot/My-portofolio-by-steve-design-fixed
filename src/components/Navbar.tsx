@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavbarProps {
   onOpenCvModal?: () => void;
@@ -32,19 +32,41 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [internalActiveSection, setInternalActiveSection] = useState<string>('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHireActive, setIsHireActive] = useState(false);
+  const [isLeavingHire, setIsLeavingHire] = useState(false);
+  const hireNavTimer = React.useRef<number | null>(null);
 
-  const isHireButtonActive = isHirePage || isHireActive;
+  // Tombol tampil dalam keadaan tertukar (BACK, panah kiri) selama halaman Hire aktif
+  // dan animasi kembali belum dijalankan
+  const isHireButtonActive = (isHirePage && !isLeavingHire) || isHireActive;
+  const hireLabel = isHirePage && !isLeavingHire ? 'BACK' : 'HIRE ME';
+  const hireArrowFlipped = isHirePage && !isLeavingHire;
 
   const handleHireClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    // Abaikan klik tambahan selama animasi swap masih berjalan
+    if (hireNavTimer.current !== null) return;
     if (isHirePage) {
-      if (onNavigateHome) {
-        onNavigateHome('home');
-      }
+      // Pola yang sama seperti tombol VIEW MY WORK: putar animasi swap kembali
+      // terlebih dahulu (~420ms), setelah itu baru kembali ke beranda
+      setIsLeavingHire(true);
+      hireNavTimer.current = window.setTimeout(() => {
+        hireNavTimer.current = null;
+        if (onNavigateHome) {
+          onNavigateHome('home');
+        }
+        setIsLeavingHire(false);
+      }, 420);
       return;
     }
     if (onNavigateHire) {
-      onNavigateHire();
+      // Animasi swap berjalan dulu (~420ms) supaya terlihat penuh oleh pengguna,
+      // perpindahan halaman menyusul setelah animasi selesai
+      setIsHireActive(true);
+      hireNavTimer.current = window.setTimeout(() => {
+        hireNavTimer.current = null;
+        onNavigateHire();
+        setIsHireActive(false);
+      }, 420);
     } else {
       setIsHireActive(true);
       setTimeout(() => {
@@ -114,7 +136,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (isDetailPage || isTemporaryPage || isHirePage) {
+  if (isDetailPage || isTemporaryPage) {
     return null;
   }
 
@@ -126,7 +148,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <a
             href="#home"
             onClick={(e) => {
-              if (isDetailPage && onNavigateHome) {
+              if ((isDetailPage || isHirePage) && onNavigateHome) {
                 e.preventDefault();
                 onNavigateHome('home');
               }
@@ -161,7 +183,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     key={link.id}
                     href={link.href}
                     onClick={(e) => {
-                      if (isDetailPage && onNavigateHome) {
+                      if ((isDetailPage || isHirePage) && onNavigateHome) {
                         e.preventDefault();
                         onNavigateHome(link.id);
                       }
@@ -214,7 +236,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 >
                   <motion.svg
                     layout
-                    animate={{ rotate: isHirePage ? 180 : 0 }}
+                    animate={{ rotate: hireArrowFlipped ? 180 : 0 }}
                     transition={{ type: 'spring', stiffness: 320, damping: 26 }}
                     className="w-3.5 h-3.5 text-[#171717]"
                     viewBox="0 0 24 24"
@@ -230,17 +252,28 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </motion.svg>
                 </motion.span>
 
-                {/* Teks HIRE ME / BACK */}
+                {/* Teks HIRE ME / BACK: berganti secara halus mengikuti keadaan tombol */}
                 <motion.span
                   layout
                   transition={{ type: 'spring', stiffness: 320, damping: 26 }}
-                  className={`px-3.5 py-1 rounded-full text-xs font-bold tracking-wider uppercase flex items-center justify-center transition-colors duration-300 ${
+                  className={`px-3.5 py-1 rounded-full text-xs font-bold tracking-wider uppercase flex items-center justify-center transition-colors duration-300 overflow-hidden ${
                     isHireButtonActive
                       ? 'bg-[#31543A] text-white'
                       : 'bg-white text-[#171717]'
                   }`}
                 >
-                  {isHirePage ? 'BACK' : 'HIRE ME'}
+                  <AnimatePresence mode="popLayout" initial={false}>
+                    <motion.span
+                      key={hireLabel}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.18, ease: 'easeOut' }}
+                      className="block"
+                    >
+                      {hireLabel}
+                    </motion.span>
+                  </AnimatePresence>
                 </motion.span>
               </motion.button>
             </div>
@@ -274,7 +307,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 >
                   <motion.svg
                     layout
-                    animate={{ rotate: isHirePage ? 180 : 0 }}
+                    animate={{ rotate: hireArrowFlipped ? 180 : 0 }}
                     transition={{ type: 'spring', stiffness: 320, damping: 26 }}
                     className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#171717]"
                     viewBox="0 0 24 24"
@@ -290,17 +323,28 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </motion.svg>
                 </motion.span>
 
-                {/* Teks HIRE ME / BACK */}
+                {/* Teks HIRE ME / BACK: berganti secara halus mengikuti keadaan tombol */}
                 <motion.span
                   layout
                   transition={{ type: 'spring', stiffness: 320, damping: 26 }}
-                  className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold tracking-wider uppercase flex items-center justify-center transition-colors duration-300 ${
+                  className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold tracking-wider uppercase flex items-center justify-center transition-colors duration-300 overflow-hidden ${
                     isHireButtonActive
                       ? 'bg-[#31543A] text-white'
                       : 'bg-white text-[#171717]'
                   }`}
                 >
-                  {isHirePage ? 'BACK' : 'HIRE ME'}
+                  <AnimatePresence mode="popLayout" initial={false}>
+                    <motion.span
+                      key={hireLabel}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.18, ease: 'easeOut' }}
+                      className="block"
+                    >
+                      {hireLabel}
+                    </motion.span>
+                  </AnimatePresence>
                 </motion.span>
               </motion.button>
 
