@@ -65,7 +65,7 @@ export const ProjectDetailJasaDigital: React.FC<ProjectDetailJasaDigitalProps> =
           <div className="flex flex-wrap gap-2.5">
             {[
               'Komunikasi dengan pelanggan',
-              'Memahami kebutuhan naskah',
+              'Memahami kebutuhan artikel',
               'Pengelolaan antrean pesanan',
               'Penentuan tarif transparan',
               'Pelayanan & revisi cepat',
@@ -131,7 +131,7 @@ export const ProjectDetailJasaDigital: React.FC<ProjectDetailJasaDigitalProps> =
                 no: '01',
                 title: 'Efektivitas Komunikasi',
                 score: 'Tinggi',
-                desc: 'Pelayanan responsif via WhatsApp, penjelasan alur sistematis, dan konfirmasi kebutuhan naskah secara transparan.',
+                desc: 'Pelayanan responsif via WhatsApp, penjelasan alur sistematis, dan konfirmasi kebutuhan artikel secara transparan.',
                 tag: 'Komunikasi Ramah',
               },
               {
@@ -145,7 +145,7 @@ export const ProjectDetailJasaDigital: React.FC<ProjectDetailJasaDigitalProps> =
                 no: '03',
                 title: 'Ketepatan Waktu',
                 score: 'Cepat & Tepat',
-                desc: 'Rata-rata pengerjaan tuntas dalam 1 hingga 2 jam sejak naskah dan data dikonfirmasi lengkap oleh pelanggan.',
+                desc: 'Rata-rata pengerjaan tuntas dalam 1 hingga 2 jam sejak artikel dan data dikonfirmasi lengkap oleh pelanggan.',
                 tag: 'Kecepatan Proses',
               },
               {
