@@ -13,6 +13,9 @@ export const CircularOrbitBackdrop: React.FC<CircularOrbitBackdropProps> = ({
   className = '',
 }) => {
   const activePhotoSrc = photoSrc || '/assets/taufik_official_portrait.webp';
+  const uid = React.useId().replace(/[^a-zA-Z0-9]/g, '');
+  const clipId = `popOutCircleClip-${uid}`;
+  const filterId = `pillMockupShadow-${uid}`;
 
   return (
     <div className={`relative w-full h-full flex items-center justify-center md:justify-end select-none overflow-visible ${className}`}>
@@ -30,7 +33,7 @@ export const CircularOrbitBackdrop: React.FC<CircularOrbitBackdropProps> = ({
       >
         <defs>
           {/* Pop-Out Mask: Bottom is clipped precisely to the circle curve, top allows head/hair to pop out freely */}
-          <clipPath id="popOutCircleClip" clipPathUnits="userSpaceOnUse">
+          <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
             <path
               d="
                 M 125 310
@@ -43,7 +46,7 @@ export const CircularOrbitBackdrop: React.FC<CircularOrbitBackdropProps> = ({
           </clipPath>
 
           {/* Soft natural drop shadow for Mockup Pill Cards */}
-          <filter id="pillMockupShadow" x="-15%" y="-25%" width="130%" height="160%">
+          <filter id={filterId} x="-15%" y="-25%" width="130%" height="160%">
             <feDropShadow dx="0" dy="5" stdDeviation="7" floodColor="#000000" floodOpacity="0.09" />
             <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="#000000" floodOpacity="0.04" />
           </filter>
@@ -58,7 +61,7 @@ export const CircularOrbitBackdrop: React.FC<CircularOrbitBackdropProps> = ({
         />
 
         {/* 2. LAYER SUBJEK: Foto Resmi Permanen Taufik Hidayat Malii (Cutout Pop-Out Effect) */}
-        <g clipPath="url(#popOutCircleClip)">
+        <g clipPath={`url(#${clipId})`}>
           <image
             href={activePhotoSrc}
             x="115"
@@ -78,7 +81,7 @@ export const CircularOrbitBackdrop: React.FC<CircularOrbitBackdropProps> = ({
           initial={{ opacity: 0, x: 26 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          filter="url(#pillMockupShadow)"
+          filter={`url(#${filterId})`}
           className="cursor-default select-none"
         >
           {/* Pill Capsule Body */}
@@ -128,7 +131,7 @@ export const CircularOrbitBackdrop: React.FC<CircularOrbitBackdropProps> = ({
           initial={{ opacity: 0, x: 26 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.85, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
-          filter="url(#pillMockupShadow)"
+          filter={`url(#${filterId})`}
           className="cursor-default select-none"
         >
           {/* Pill Capsule Body */}
