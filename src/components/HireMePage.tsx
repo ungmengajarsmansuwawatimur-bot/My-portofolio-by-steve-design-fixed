@@ -36,8 +36,8 @@ const SERVICES_LIST = [
     number: '04',
     title: 'Layanan Jasa Digital & Pengetikan Dokumen',
     category: 'DIGITAL & ADMINISTRATIVE',
-    desc: 'Berpengalaman mendampingi klien mahasiswa dalam pengurusan publikasi naskah artikel ilmiah, pengelolaan dokumen kesiswaan, pengetikan rapi, serta pengoperasian spreadsheet Google Sheets.',
-    capabilities: ['Asistensi Publikasi Naskah', 'Google Sheets & Workspace', 'Komunikasi Follow-up Cepat'],
+    desc: 'Berpengalaman mendampingi klien mahasiswa dalam pengurusan publikasi artikel ilmiah, pengelolaan dokumen kesiswaan, pengetikan rapi, serta pengoperasian spreadsheet Google Sheets.',
+    capabilities: ['Asistensi Publikasi Artikel', 'Google Sheets & Workspace', 'Komunikasi Follow-up Cepat'],
   },
 ] as const;
 
