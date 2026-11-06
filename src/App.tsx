@@ -1,4 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
+import { motion } from 'motion/react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AboutExperience } from './components/AboutExperience';
@@ -115,7 +116,7 @@ export default function App() {
   const isDetailPage = currentRoute === 'jasa-digital' || currentRoute === 'padds-smansat' || currentRoute === 'usaha-keluarga' || currentRoute === 'pembelajaran-retail';
   const isTemporaryPage = currentRoute === 'jasa-digital' || currentRoute === 'padds-smansat' || currentRoute === 'usaha-keluarga';
   const isHirePage = currentRoute === 'hire-me';
-  const showNavbar = currentRoute === 'home';
+  const showNavbar = currentRoute === 'home' || currentRoute === 'hire-me';
 
   return (
     <div className="min-h-screen bg-white text-[#171717] flex flex-col selection:bg-[#F9B51B] selection:text-[#171717] relative">
@@ -141,6 +142,14 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className={`flex-1 w-full overflow-x-hidden ${showNavbar ? 'pt-20' : 'pt-0'}`}>
+        {/* Transisi halaman halus: konten masuk dengan fade dan geser lembut setiap ganti halaman */}
+        <motion.div
+          key={currentRoute}
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
+          className="w-full"
+        >
         <Suspense fallback={null}>
           {currentRoute === 'hire-me' ? (
             <HireMePage
@@ -174,6 +183,7 @@ export default function App() {
             </>
           )}
         </Suspense>
+        </motion.div>
       </main>
 
       {/* Global Consistent Footer */}
