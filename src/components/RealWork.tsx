@@ -11,7 +11,7 @@ const projectEntries = [
     period: 'Desember 2024 s.d. Sekarang',
     category: 'PELAYANAN & PENGELOLAAN',
     title: 'Layanan Digital & Publikasi Artikel',
-    teaser: 'Layanan koordinasi naskah publikasi artikel tugas mahasiswa via WhatsApp, transparansi tarif, dan penanganan revisi cepat.',
+    teaser: 'Layanan koordinasi publikasi artikel tugas mahasiswa via WhatsApp, transparansi tarif, dan penanganan revisi cepat.',
     badge: '5 Studi Alur Nyata',
     avifSrc: '/assets/mockups/mockup_01_jasa_digital.avif',
     webpSrc: '/assets/mockups/mockup_01_jasa_digital.webp',
