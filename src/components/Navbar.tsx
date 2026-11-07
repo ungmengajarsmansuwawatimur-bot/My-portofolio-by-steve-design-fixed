@@ -252,7 +252,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </motion.svg>
                 </motion.span>
 
-                {/* Teks HIRE ME / BACK: berganti secara halus mengikuti keadaan tombol */}
+                {/* Teks HIRE ME / BACK: bergeser horizontal mengikuti arah swap tombol (BACK masuk dari kanan ke kiri), durasi 420ms setara pola VIEW MY WORK */}
                 <motion.span
                   layout
                   transition={{ type: 'spring', stiffness: 320, damping: 26 }}
@@ -265,10 +265,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <AnimatePresence mode="popLayout" initial={false}>
                     <motion.span
                       key={hireLabel}
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      transition={{ duration: 0.18, ease: 'easeOut' }}
+                      initial={{ opacity: 0, x: hireLabel === 'BACK' ? 14 : -14 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: hireLabel === 'BACK' ? -14 : 14 }}
+                      transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
                       className="block"
                     >
                       {hireLabel}
@@ -323,7 +323,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </motion.svg>
                 </motion.span>
 
-                {/* Teks HIRE ME / BACK: berganti secara halus mengikuti keadaan tombol */}
+                {/* Teks HIRE ME / BACK: bergeser horizontal mengikuti arah swap tombol (BACK masuk dari kanan ke kiri), durasi 420ms setara pola VIEW MY WORK */}
                 <motion.span
                   layout
                   transition={{ type: 'spring', stiffness: 320, damping: 26 }}
@@ -336,10 +336,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <AnimatePresence mode="popLayout" initial={false}>
                     <motion.span
                       key={hireLabel}
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      transition={{ duration: 0.18, ease: 'easeOut' }}
+                      initial={{ opacity: 0, x: hireLabel === 'BACK' ? 14 : -14 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: hireLabel === 'BACK' ? -14 : 14 }}
+                      transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
                       className="block"
                     >
                       {hireLabel}
