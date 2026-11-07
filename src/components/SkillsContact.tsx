@@ -218,14 +218,14 @@ export const SkillsContact: React.FC<SkillsContactProps> = ({ onOpenCvModal }) =
 
               <div className="flex items-center justify-between gap-4">
                 <a
-                  href="mailto:taufikmalii281003@gmail.com"
+                  href="mailto:kontak@taufikmaliiportofolio.com"
                   className="font-heading font-semibold text-xs sm:text-sm md:text-base text-[#171717] dark:text-white hover:text-[#A86200] dark:hover:text-[#F9B51B] transition-colors break-all"
                 >
-                  taufikmalii281003@gmail.com
+                  kontak@taufikmaliiportofolio.com
                 </a>
                 <a
-                  href="mailto:taufikmalii281003@gmail.com"
-                  aria-label="Kirim Email ke taufikmalii281003@gmail.com"
+                  href="mailto:kontak@taufikmaliiportofolio.com"
+                  aria-label="Kirim Email ke kontak@taufikmaliiportofolio.com"
                   className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-[#F9B51B] text-[#171717] flex items-center justify-center font-bold text-base sm:text-lg hover:scale-105 active:scale-95 transition-all shadow-xs shrink-0 cursor-pointer"
                 >
                   <span className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
