@@ -70,7 +70,8 @@ export const HireMePage: React.FC<HireMePageProps> = ({ onBackToHome, onOpenCvMo
     message: '',
   });
 
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitted'>('idle');
+  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'submitted'>('idle');
+  const [lastChannel, setLastChannel] = useState<'email' | 'whatsapp'>('email');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -107,24 +108,60 @@ export const HireMePage: React.FC<HireMePageProps> = ({ onBackToHome, onOpenCvMo
     const encodedText = encodeURIComponent(textLines.join('\n'));
     const waUrl = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodedText}`;
 
+    setLastChannel('whatsapp');
     setFormStatus('submitted');
     window.open(waUrl, '_blank', 'noopener,noreferrer');
   };
 
-  const handleSendEmail = (e: React.FormEvent | React.MouseEvent) => {
+  // Kirim pesan langsung dari website lewat Web3Forms ke kontak@taufikmaliiportofolio.com,
+  // tanpa membuka aplikasi email pengunjung. Kunci akses di bawah adalah kunci publik
+  // Web3Forms yang memang dirancang untuk dipasang di kode sisi klien.
+  const WEB3FORMS_ACCESS_KEY = '64652fd8-4dc1-4cae-b54f-62e7591529b3';
+  const handleSendEmail = async (e: React.FormEvent | React.MouseEvent) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.message.trim()) {
       setErrorMessage('Mohon lengkapi nama dan pesan terlebih dahulu.');
       return;
     }
+    if (formStatus === 'sending') return;
 
-    const subject = encodeURIComponent(`[Tawaran Kerja] dari ${formData.name}`);
-    const body = encodeURIComponent(
-      `Halo Taufik Hidayat Malii,\n\nNama: ${formData.name}\nEmail: ${formData.email}\n\nPesan:\n${formData.message}\n`
-    );
-
-    setFormStatus('submitted');
-    window.location.href = `mailto:taufikmalii281003@gmail.com?subject=${subject}&body=${body}`;
+    setFormStatus('sending');
+    setErrorMessage('');
+    try {
+      const honeypot = (document.getElementById('hire-website') as HTMLInputElement | null)?.value ?? '';
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Pesan Website Portofolio dari ${formData.name.trim()}`,
+          from_name: formData.name.trim(),
+          replyto: formData.email.trim(),
+          Nama: formData.name.trim(),
+          Email: formData.email.trim() || '-',
+          Telepon: formData.phone.trim() || '-',
+          Kategori: formData.serviceType,
+          Pesan: formData.message.trim(),
+          botcheck: honeypot !== '',
+        }),
+      });
+      const result = await response.json().catch(() => null);
+      if (response.ok && result && result.success) {
+        setLastChannel('email');
+        setFormStatus('submitted');
+        setFormData((prev) => ({ ...prev, name: '', email: '', message: '' }));
+      } else {
+        setFormStatus('idle');
+        setErrorMessage(
+          'Pesan gagal dikirim. Silakan coba lagi, atau hubungi langsung melalui email kontak@taufikmaliiportofolio.com.'
+        );
+      }
+    } catch {
+      setFormStatus('idle');
+      setErrorMessage(
+        'Pesan gagal dikirim. Silakan coba lagi, atau hubungi langsung melalui email kontak@taufikmaliiportofolio.com.'
+      );
+    }
   };
 
   return (
@@ -230,7 +267,7 @@ export const HireMePage: React.FC<HireMePageProps> = ({ onBackToHome, onOpenCvMo
 
                 {/* Email Resmi */}
                 <a
-                  href="mailto:taufikmalii281003@gmail.com"
+                  href="mailto:kontak@taufikmaliiportofolio.com"
                   className="group flex items-center gap-3.5 sm:gap-4 p-3 xs:p-3.5 sm:p-4 rounded-xs border-2 border-[#171717] dark:border-white/20 bg-[#FBFBFB] dark:bg-[#1A1A1A] hover:bg-[#FFF8E7] dark:hover:bg-[#252525] shadow-[3px_3px_0px_#171717] dark:shadow-[3px_3px_0px_#F9B51B] dark:shadow-[3px_3px_0px_#d1fe17] transition-all"
                 >
                   <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#F9B51B] dark:bg-[#d1fe17] border-2 border-[#171717] text-[#171717] flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
@@ -243,7 +280,7 @@ export const HireMePage: React.FC<HireMePageProps> = ({ onBackToHome, onOpenCvMo
                       Email Resmi:
                     </span>
                     <span className="font-display font-bold text-sm sm:text-base text-[#171717] dark:text-white group-hover:text-[#F9B51B] dark:group-hover:text-[#F9B51B] dark:text-[#d1fe17] transition-colors truncate block">
-                      taufikmalii281003@gmail.com
+                      kontak@taufikmaliiportofolio.com
                     </span>
                   </div>
                   <span className="text-sm font-bold text-[#171717] dark:text-white group-hover:translate-x-1 transition-transform pr-1">
@@ -272,7 +309,17 @@ export const HireMePage: React.FC<HireMePageProps> = ({ onBackToHome, onOpenCvMo
                 </div>
 
                 {/* Success Feedback Banner */}
-                {formStatus === 'submitted' && (
+                {formStatus === 'submitted' && lastChannel === 'email' && (
+                  <div className="mb-6 p-4 rounded-xs border-2 border-[#31543A] bg-[#31543A]/10 text-[#31543A] dark:text-[#A8E6CF] text-xs sm:text-sm space-y-1" role="status">
+                    <p className="font-display font-bold">
+                      ✓ Pesan berhasil dikirim.
+                    </p>
+                    <p className="font-body text-xs text-[#555555] dark:text-[#CCCCCC]">
+                      Terima kasih, pesan Anda sudah terkirim langsung dari website ini ke kontak resmi Taufik dan akan dibalas melalui email yang Anda cantumkan.
+                    </p>
+                  </div>
+                )}
+                {formStatus === 'submitted' && lastChannel === 'whatsapp' && (
                   <div className="mb-6 p-4 rounded-xs border-2 border-[#31543A] bg-[#31543A]/10 text-[#31543A] dark:text-[#A8E6CF] text-xs sm:text-sm space-y-1">
                     <p className="font-display font-bold">
                       ✓ Pesan Anda telah siap dan diarahkan ke kontak resmi Taufik.
@@ -291,6 +338,16 @@ export const HireMePage: React.FC<HireMePageProps> = ({ onBackToHome, onOpenCvMo
                 )}
 
                 <form onSubmit={handleSendEmail} className="space-y-5">
+                  {/* Kolom jebakan anti spam, tidak terlihat oleh pengunjung */}
+                  <input
+                    id="hire-website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="hidden"
+                    aria-hidden="true"
+                  />
                   {/* Grid 2 Columns for Inputs */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     
@@ -350,9 +407,10 @@ export const HireMePage: React.FC<HireMePageProps> = ({ onBackToHome, onOpenCvMo
                     {/* Primary Button: Email */}
                     <button
                       type="submit"
-                      className="font-display flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xs text-xs sm:text-sm font-bold tracking-wider uppercase bg-[#F9B51B] dark:bg-[#d1fe17] hover:bg-[#e0a012] dark:hover:bg-[#bce610] text-[#171717] border-2 border-[#171717] shadow-[3px_3px_0px_#171717] active:translate-x-[1px] active:translate-y-[1px] transition-all cursor-pointer select-none"
+                      disabled={formStatus === 'sending'}
+                      className="font-display flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xs text-xs sm:text-sm font-bold tracking-wider uppercase bg-[#F9B51B] dark:bg-[#d1fe17] hover:bg-[#e0a012] dark:hover:bg-[#bce610] text-[#171717] border-2 border-[#171717] shadow-[3px_3px_0px_#171717] active:translate-x-[1px] active:translate-y-[1px] transition-all cursor-pointer select-none disabled:opacity-60 disabled:cursor-wait"
                     >
-                      <span>KIRIM VIA EMAIL</span>
+                      <span>{formStatus === 'sending' ? 'MENGIRIM...' : 'KIRIM VIA EMAIL'}</span>
                       <span className="text-base" aria-hidden="true">&rarr;</span>
                     </button>
                   </div>
