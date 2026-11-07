@@ -623,7 +623,7 @@ export const toolsData: ToolItem[] = [
     percentage: '88%',
   },
   {
-    name: 'Google AI Studio',
+    name: 'Google Studio',
     role: 'AI Engineering & Prompt',
     category: 'AI & Web Creation',
     iconName: 'google ai studio',
@@ -720,9 +720,9 @@ export const contactData: ContactChannel[] = [
   {
     platform: 'Email',
     label: 'Email',
-    value: 'taufikmalii281003@gmail.com',
+    value: 'kontak@taufikmaliiportofolio.com',
     isAvailable: true,
-    actionUrl: 'mailto:taufikmalii281003@gmail.com',
+    actionUrl: 'mailto:kontak@taufikmaliiportofolio.com',
     placeholderText: 'Kirim surat elektronik resmi',
     iconType: 'email',
   },
@@ -789,6 +789,24 @@ export const testimonialsData: TestimonialItem[] = [
     category: 'KOLABORASI PUBLIKASI MANDIRI',
     quote:
       'Tanggung jawab dan bisa dipercaya. Dari pemeriksaan artikel, konfirmasi revisi, sampai bukti transfer dan link publikasi, semuanya disampaikan dengan jelas dan transparan. Jadi kami tenang.',
+    stars: 5,
+  },
+  {
+    id: 'testi-5',
+    name: 'Klien Website',
+    role: 'Pembuatan Website untuk Usaha',
+    category: 'PEMBUATAN WEBSITE',
+    quote:
+      'Saya minta dibuatkan website untuk usaha saya dan hasilnya melebihi ekspektasi. Tampilannya rapi dan profesional, dibuka di HP juga enak. Selama pengerjaan komunikasinya lancar, setiap revisi yang saya minta dikerjakan dengan cepat sampai hasilnya sesuai yang saya mau.',
+    stars: 5,
+  },
+  {
+    id: 'testi-6',
+    name: 'Klien Website',
+    role: 'Pembuatan Website Profil',
+    category: 'PEMBUATAN WEBSITE',
+    quote:
+      'Awalnya saya awam sekali soal website, tapi semuanya dijelaskan dengan sabar dan bahasanya mudah dipahami. Website saya selesai tepat waktu, tampilannya bersih, dan informasinya tersusun jelas. Setelah jadi pun masih dibantu kalau ada yang mau diubah.',
     stars: 5,
   },
 ];
