@@ -1,5 +1,8 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import StoreIcon from '@mui/icons-material/Store';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import {
   candidateProfile,
   experienceData,
@@ -241,20 +244,21 @@ export const AboutExperience: React.FC<AboutExperienceProps> = () => {
                 <div className="bg-white dark:bg-[#1E1E22] border border-[#171717]/12 dark:border-white/10 rounded-2xl p-4 sm:p-5 md:p-6 shadow-xs hover:shadow-md hover:border-[#F59E0B]/60 transition-all duration-200">
                   <div className="flex items-center justify-between gap-3 sm:gap-4">
                     <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
-                      <div className="shrink-0 flex items-center justify-center">
-                        <picture className="flex items-center justify-center">
-                          <source srcSet="/assets/icons/education_degree_cap.avif" type="image/avif" />
-                          <source srcSet="/assets/icons/education_degree_cap.webp" type="image/webp" />
-                          <img
-                            src="/assets/icons/education_degree_cap.png"
-                            alt="Ikon Bimbingan & Konseling"
-                            width={36}
-                            height={36}
-                            loading="lazy"
-                            decoding="async"
-                            className="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none dark:drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]"
-                          />
-                        </picture>
+                      <div className="shrink-0 flex items-center justify-center" role="img" aria-label="Ikon Bimbingan & Konseling">
+                        {/* Ikon Academy (Flaticon): topi wisuda di atas buku terbuka,
+                            diwarnai kuning mengikuti aksen situs; varian gelap ditukar lewat kelas dark */}
+                        <img
+                          src="/assets/icons/education_academy.png"
+                          alt=""
+                          className="w-8 h-8 sm:w-9 sm:h-9 object-contain dark:hidden"
+                          aria-hidden="true"
+                        />
+                        <img
+                          src="/assets/icons/education_academy_dark.png"
+                          alt=""
+                          className="w-8 h-8 sm:w-9 sm:h-9 object-contain hidden dark:block"
+                          aria-hidden="true"
+                        />
                       </div>
                       <div className="space-y-0.5 min-w-0">
                         <h3 className="font-heading text-base sm:text-lg md:text-xl font-bold text-[#171717] dark:text-white leading-snug">
@@ -275,20 +279,20 @@ export const AboutExperience: React.FC<AboutExperienceProps> = () => {
                 <div className="bg-white dark:bg-[#1E1E22] border border-[#171717]/12 dark:border-white/10 rounded-2xl p-4 sm:p-5 md:p-6 shadow-xs hover:shadow-md hover:border-[#F59E0B]/60 transition-all duration-200">
                   <div className="flex items-center justify-between gap-3 sm:gap-4">
                     <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
-                      <div className="shrink-0 flex items-center justify-center">
-                        <picture className="flex items-center justify-center">
-                          <source srcSet="/assets/icons/education_open_book.avif" type="image/avif" />
-                          <source srcSet="/assets/icons/education_open_book.webp" type="image/webp" />
-                          <img
-                            src="/assets/icons/education_open_book.png"
-                            alt="Ikon Pendidikan SMA IPS"
-                            width={36}
-                            height={36}
-                            loading="lazy"
-                            decoding="async"
-                            className="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none dark:drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]"
-                          />
-                        </picture>
+                      <div className="shrink-0 flex items-center justify-center" role="img" aria-label="Ikon Pendidikan SMA IPS">
+                        {/* Ikon Academy yang sama seperti kartu Bimbingan & Konseling */}
+                        <img
+                          src="/assets/icons/education_academy.png"
+                          alt=""
+                          className="w-8 h-8 sm:w-9 sm:h-9 object-contain dark:hidden"
+                          aria-hidden="true"
+                        />
+                        <img
+                          src="/assets/icons/education_academy_dark.png"
+                          alt=""
+                          className="w-8 h-8 sm:w-9 sm:h-9 object-contain hidden dark:block"
+                          aria-hidden="true"
+                        />
                       </div>
                       <div className="space-y-0.5 min-w-0">
                         <h3 className="font-heading text-base sm:text-lg md:text-xl font-bold text-[#171717] dark:text-white leading-snug">
@@ -332,64 +336,41 @@ export const AboutExperience: React.FC<AboutExperienceProps> = () => {
               {/* List of Experience Cards (staggered delay 100ms, 200ms, 300ms) */}
               <div className="space-y-4 sm:space-y-5">
                 {filteredItems.map((item, index) => {
-                  // User-provided distinct icons for each experience card
+                  // Ikon MUI untuk tiap kartu pengalaman: dipoles warna kuning polos
+                  // mengikuti warna aksen situs, tanpa aksen bold atau bingkai tambahan
                   const renderExperienceIcon = () => {
                     if (item.id === 'bg-1') {
-                      // Client digital consultation / chat service (Laptop + Megaphone)
+                      // Pelayanan & Pengelolaan Jasa Digital: agen layanan pelanggan
                       return (
-                        <div className="shrink-0 flex items-center justify-center mt-0.5">
-                          <picture className="flex items-center justify-center">
-                            <source srcSet="/assets/icons/experience_digital_megaphone.avif" type="image/avif" />
-                            <source srcSet="/assets/icons/experience_digital_megaphone.webp" type="image/webp" />
-                            <img
-                              src="/assets/icons/experience_digital_megaphone.png"
-                              alt="Ikon Pelayanan Jasa Digital"
-                              width={36}
-                              height={36}
-                              loading="lazy"
-                              decoding="async"
-                              className="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none dark:drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]"
-                            />
-                          </picture>
+                        <div className="shrink-0 flex items-center justify-center mt-0.5" role="img" aria-label="Ikon Pelayanan Jasa Digital">
+                          <SupportAgentIcon
+                            sx={{ fontSize: { xs: 32, sm: 36 } }}
+                            className="text-[#F59E0B] dark:text-[#F9B51B] transition-colors"
+                            aria-hidden="true"
+                          />
                         </div>
                       );
                     }
                     if (item.id === 'bg-2') {
-                      // Physical storefront / direct daily operations
+                      // Pelayanan & Operasional Harian: toko fisik
                       return (
-                        <div className="shrink-0 flex items-center justify-center mt-0.5">
-                          <picture className="flex items-center justify-center">
-                            <source srcSet="/assets/icons/experience_storefront.avif" type="image/avif" />
-                            <source srcSet="/assets/icons/experience_storefront.webp" type="image/webp" />
-                            <img
-                              src="/assets/icons/experience_storefront.png"
-                              alt="Ikon Pelayanan &amp; Operasional Harian"
-                              width={36}
-                              height={36}
-                              loading="lazy"
-                              decoding="async"
-                              className="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none dark:drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]"
-                            />
-                          </picture>
+                        <div className="shrink-0 flex items-center justify-center mt-0.5" role="img" aria-label="Ikon Pelayanan & Operasional Harian">
+                          <StoreIcon
+                            sx={{ fontSize: { xs: 32, sm: 36 } }}
+                            className="text-[#F59E0B] dark:text-[#F9B51B] transition-colors"
+                            aria-hidden="true"
+                          />
                         </div>
                       );
                     }
-                    // bg-3: Modern service standard development
+                    // bg-3: Pengembangan Standar Pelayanan: keranjang ritel
                     return (
-                      <div className="shrink-0 flex items-center justify-center mt-0.5">
-                        <picture className="flex items-center justify-center">
-                          <source srcSet="/assets/icons/experience_retail_cart.avif" type="image/avif" />
-                          <source srcSet="/assets/icons/experience_retail_cart.webp" type="image/webp" />
-                          <img
-                            src="/assets/icons/experience_retail_cart.png"
-                            alt="Ikon Pengembangan Standar Pelayanan"
-                            width={36}
-                            height={36}
-                            loading="lazy"
-                            decoding="async"
-                            className="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none dark:drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]"
-                          />
-                        </picture>
+                      <div className="shrink-0 flex items-center justify-center mt-0.5" role="img" aria-label="Ikon Pengembangan Standar Pelayanan">
+                        <LocalGroceryStoreIcon
+                          sx={{ fontSize: { xs: 32, sm: 36 } }}
+                          className="text-[#F59E0B] dark:text-[#F9B51B] transition-colors"
+                          aria-hidden="true"
+                        />
                       </div>
                     );
                   };
