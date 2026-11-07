@@ -267,7 +267,7 @@ export const OfficialAppIcon: React.FC<OfficialAppIconProps> = ({ name, classNam
           <source srcSet="/assets/icons/google_studio.webp" type="image/webp" />
           <img
             src="/assets/icons/google_studio.png"
-            alt="Google AI Studio"
+            alt="Google Studio"
             width={48}
             height={48}
             loading="lazy"
