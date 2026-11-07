@@ -89,7 +89,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
 
           {/* Bottom Row: Social Icons, Copyright & Back to Top */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-4">
-            {/* Social Media Circular Buttons (Facebook, LinkedIn, Instagram, YouTube) */}
+            {/* Social Media Circular Buttons (Facebook, LinkedIn, Instagram, Threads) */}
             <div className="flex items-center justify-center gap-2.5 sm:gap-3 shrink-0">
               {/* Facebook */}
               <a
@@ -132,16 +132,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
                 </svg>
               </a>
 
-              {/* YouTube */}
+              {/* Threads (menggantikan YouTube atas permintaan pemilik situs) */}
               <a
-                href="https://youtube.com"
+                href="https://www.threads.com/@taufikmli"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="YouTube"
+                aria-label="Threads"
                 className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#F3F4F6] dark:bg-[#222222] text-[#171717] dark:text-white flex items-center justify-center hover:bg-[#E5E7EB] dark:hover:bg-[#2E2E2E] hover:scale-105 active:scale-95 transition-all cursor-pointer"
               >
                 <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z" />
                 </svg>
               </a>
             </div>
@@ -159,6 +159,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateHome }) => {
                   className="hover:text-[#171717] dark:hover:text-white transition-colors underline-offset-2 hover:underline cursor-pointer"
                 >
                   Privacy Policy
+                </a>{' '}
+                &middot;{' '}
+                <a
+                  href="https://www.flaticon.com/free-icon/academy_17206264"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#171717] dark:hover:text-white transition-colors underline-offset-2 hover:underline cursor-pointer"
+                >
+                  Ikon Academy oleh Flaticon
                 </a>
               </span>
             </div>
